@@ -3,5 +3,30 @@
 {% block title %}Symfony Articles{% endblock %}
 
 {% block body %}
-<h1>Articles</h1>
+    <h1>Articles for {{ name }}</h1>
+
+    {% if articles %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Article</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td>{{ article.title }}</td>
+                    <td>
+                        <a href="http://localhost:8888/basic_crud/public/article/view/{{ article.id }}" class="btn btn-primary">View</a>
+                        <a href="http://localhost:8888/basic_crud/public/article/update/{{ article.id }}" class="btn btn-warning">Update</a>
+                        <a href="http://localhost:8888/basic_crud/public/article/delete/{{ article.id }}" class="btn btn-danger delete">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No articles found!</p>
+    {% endif %}
 {% endblock %}
